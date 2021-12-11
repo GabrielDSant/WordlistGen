@@ -1,7 +1,6 @@
 import datetime
 import itertools
 import string
-import sys
 #primeiro nome
 nome = input('Primeiro nome:')
 #Sobrenome
@@ -54,11 +53,11 @@ info_alvo = [
     format(aniversario.month),
     format(aniversario.year)
 ]
-alvo_iter = iter(info_alvo)
-
 def alvo():
-    for item in info_alvo:
-        output.write(item+'\n'+item+next(alvo_iter)+'\n')
+    for item in itertools.permutations(info_alvo, 2):
+        ss = "".join(item)
+        output.write(ss+'\n')
+        
           
 def companheiro():
 
