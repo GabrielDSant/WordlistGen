@@ -1,4 +1,5 @@
 import datetime
+import itertools
 import string
 import sys
 #primeiro nome
@@ -8,29 +9,29 @@ sobrenome = input('Sobrenome:')
 #Nickname
 nickname = input('Apelido/Nick:')
 #Aniversário
-data = input("data:")
+data = input("EX -> 01/01/1111 data:")
 aniversario = datetime.datetime.strptime(data, "%d/%m/%Y")
 #Time de Futebol
 time = input('Time:')
 
 #Nome Companheiro(a)
-nome_companheiro = input('Nome companheiro(a):')
+##nome_companheiro = input('Nome companheiro(a):')
 #Nick Companheiro(a)
-nick_companheiro = input('Nick/Apelido Companheiro(a)')
+##nick_companheiro = input('Nick/Apelido Companheiro(a)')
 #Aniversário Companheiro(a)
-data_companheiro = input('Aniversário companheiro(a):')
-aniversario_companheiro = datetime.datetime.strptime(data_companheiro, "%d/%m/%Y")
+##data_companheiro = input('Aniversário companheiro(a):')
+##aniversario_companheiro = datetime.datetime.strptime(data_companheiro, "%d/%m/%Y")
 
 #Nome Filho(a)
-nome_filho = input('Nome do filho(a):')
+##nome_filho = input('Nome do filho(a):')
 #Nick Filho(a)
-nick_filho = input('Nick/Apelido Filho(a):')
+##nick_filho = input('Nick/Apelido Filho(a):')
 #Aniversário Filho(a)
-data_filho = input('Aniversário Filho(a):')
-aniversario_filho = datetime.datetime.strptime(data_filho, "%d/%m/%Y")
+##data_filho = input('Aniversário Filho(a):')
+##aniversario_filho = datetime.datetime.strptime(data_filho, "%d/%m/%Y")
 
 #Nome Pet
-nome_pet = input('Nome do Pet:')
+##nome_pet = input('Nome do Pet:')
 
 #Deseja adicionar simbolos ?
 simbolos = string.punctuation
@@ -38,7 +39,9 @@ simbolos = string.punctuation
 numeros = string.digits
 
 #Aonde criar arquivo
-Arquivo = input('Aonde criar arquivo:')
+Arquivo = input('Nome do arquivo:')+".txt"
+open(Arquivo, "x")
+output = open(Arquivo, "w")
 
 info_alvo = [
     nome.lower(),
@@ -47,47 +50,27 @@ info_alvo = [
     sobrenome.capitalize(),
     nickname.lower(),
     nickname.capitalize(),
-    aniversario.day,
-    aniversario.month,
-    aniversario.year]
+    format(aniversario.day),
+    format(aniversario.month),
+    format(aniversario.year)
+]
+alvo_iter = iter(info_alvo)
 
-info_companheiro = [
-    nome_companheiro.lower(),
-    nome_companheiro.capitalize(),
-    nick_companheiro.lower(),
-    nick_companheiro.capitalize(),
-    aniversario_companheiro.day,
-    aniversario_companheiro.month,
-    aniversario_companheiro.year,]
+def alvo():
+    for item in info_alvo:
+        output.write(item+'\n'+item+next(alvo_iter)+'\n')
+          
+def companheiro():
 
-info_filho = [
-    nome_filho.lower(),
-    nome_filho.capitalize(),
-    nick_filho.lower(),
-    nick_filho.capitalize,
-    aniversario_filho.day,
-    aniversario_filho.month,
-    aniversario_filho.year]
+    pass
 
-info_pet = [
-    nome_pet.lower(), 
-    nome_pet.capitalize()]
-def CriandoWordlist():
-    def alvo():
-        pass
+def filhos():
 
-    def companheiro():
-
-        pass
-
-    def filhos():
-
-        pass
+    pass
 
 #criar arquivo.txt
 #output = open(Arquivo, "a")
 #output.write(CriandoWordlist)
 
 if __name__ == '__main__':
-    print(info_alvo)
-    pass
+    alvo()
